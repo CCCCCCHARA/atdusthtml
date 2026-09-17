@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "世界": {
+      "default": {},
+      "type": "object",
+      "properties": {
+        "当前时间": {
+          "default": "2026/09/17-19:30",
+          "type": "string"
+        },
+        "当前区域": {
+          "default": "大学城",
+          "type": "string"
+        },
+        "危机阶段": {
+          "default": "征兆期",
+          "type": "string",
+          "enum": [
+            "征兆期",
+            "频发期",
+            "爆发期"
+          ]
+        },
+        "近期事务": {
+          "default": {},
+          "type": "object",
+          "propertyNames": {
+            "type": "string",
+            "description": "事务名"
+          },
+          "additionalProperties": {
+            "type": "string",
+            "description": "该事务的当前进度"
+          }
+        }
+      }
+    },
+    "林敬亭": {
+      "default": {},
+      "type": "object",
+      "properties": {
+        "心灵震颤次数": {
+          "default": 0,
+          "type": "number"
+        },
+        "震颤倾向": {
+          "default": "未定",
+          "type": "string",
+          "enum": [
+            "未定",
+            "美德",
+            "折磨"
+          ]
+        },
+        "魔法状态": {
+          "default": "无",
+          "type": "string",
+          "enum": [
+            "无",
+            "已觉醒"
+          ]
+        },
+        "关系状态": {
+          "default": "青梅竹马，关系暧昧未明",
+          "type": "string"
+        }
+      }
+    }
+  }
+}

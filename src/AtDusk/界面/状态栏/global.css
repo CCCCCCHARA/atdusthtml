@@ -1,0 +1,41 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  /* 底色：封锁线栏杆之后的那片黑，室内只有屏幕自身的微光 */
+  --c-surface: #0d1519;
+  --c-surface-raised: #14202a;
+
+  /* 文字：江雾漫过码头时的能见度，两级对比 */
+  --c-text: #cfd9de;
+  --c-text-muted: #7f8f9b;
+
+  /* 主色：雨夜里霓虹在湿路面上的反光 */
+  --c-primary: #6fa8c9;
+
+  /* 强调：手腕上那根核桃红绳，也是震颤后留下的一点余温 */
+  --c-accent: #c4645e;
+
+  /* 警示：封锁线照明塔的琥珀灯 */
+  --c-warning: #c9a24a;
+
+  /* 安定：征兆期的仪器读数 */
+  --c-calm: #5f9ea0;
+
+  /* 边框：雨里显得比实际更暗的栏杆 */
+  --c-border: #2b3a45;
+
+  /* 字体 */
+  --font-ui: 'Sarasa Gothic SC', 'Microsoft YaHei', system-ui, sans-serif;
+  --font-mono: 'Sarasa Mono SC', 'Consolas', monospace;
+}
+
+body {
+  background: transparent;
+  font-family: var(--font-ui);
+  color: var(--c-text);
+  -webkit-font-smoothing: antialiased;
+}
