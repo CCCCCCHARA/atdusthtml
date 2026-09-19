@@ -37,6 +37,36 @@
         }
       }
     },
+    "玩家": {
+      "default": {},
+      "type": "object",
+      "properties": {
+        "姓名": {
+          "default": "",
+          "type": "string"
+        },
+        "性别": {
+          "default": "",
+          "type": "string"
+        },
+        "年龄": {
+          "default": "",
+          "type": "string"
+        },
+        "身份": {
+          "default": "",
+          "type": "string"
+        },
+        "魔法状态": {
+          "default": "无",
+          "type": "string",
+          "enum": [
+            "无",
+            "已觉醒"
+          ]
+        }
+      }
+    },
     "林敬亭": {
       "default": {},
       "type": "object",
@@ -64,6 +94,61 @@
         },
         "关系状态": {
           "default": "青梅竹马，关系暧昧未明",
+          "type": "string"
+        }
+      }
+    },
+    "徐梦": {
+      "default": {},
+      "type": "object",
+      "properties": {
+        "心灵震颤次数": {
+          "default": 0,
+          "type": "number"
+        },
+        "震颤倾向": {
+          "default": "未定",
+          "type": "string",
+          "enum": [
+            "未定",
+            "美德",
+            "折磨"
+          ]
+        },
+        "恶魔形态暴露度": {
+          "default": "未暴露",
+          "type": "string",
+          "enum": [
+            "未暴露",
+            "仅<user>知道",
+            "已公开"
+          ]
+        },
+        "关系状态": {
+          "default": "表妹",
+          "type": "string"
+        }
+      }
+    },
+    "周予安": {
+      "default": {},
+      "type": "object",
+      "properties": {
+        "心灵震颤次数": {
+          "default": 0,
+          "type": "number"
+        },
+        "震颤倾向": {
+          "default": "未定",
+          "type": "string",
+          "enum": [
+            "未定",
+            "美德",
+            "折磨"
+          ]
+        },
+        "关系状态": {
+          "default": "尚不认识",
           "type": "string"
         }
       }

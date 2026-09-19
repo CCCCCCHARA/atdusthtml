@@ -6,10 +6,10 @@
 
       <div class="bar__headline">
         <div class="bar__name-line">
-          <span class="bar__name">林敬亭</span>
+          <span class="bar__name">晖城</span>
           <CrisisStage />
         </div>
-        <p class="bar__relation">{{ store.data.林敬亭.关系状态 }}</p>
+        <p class="bar__relation">{{ headline }}</p>
       </div>
 
       <span class="bar__chevron" :class="{ 'bar__chevron--open': expanded }" aria-hidden="true">
@@ -17,29 +17,50 @@
       </span>
     </button>
 
-    <!-- 展开区：世界轨 / 她轨 -->
+    <!-- 展开区：三个页签 -->
     <div v-show="expanded" class="bar__body">
-      <WorldTrack />
-      <HerTrack />
+      <TabNav v-model="active_tab" :tabs="TABS" />
+
+      <div class="bar__pane">
+        <PlayerPanel v-if="active_tab === 'player'" />
+        <CharacterPanel v-else-if="active_tab === 'chars'" />
+        <WorldPanel v-else />
+      </div>
     </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from 'vue';
+import { computed } from 'vue';
+import CharacterPanel from './components/CharacterPanel.vue';
 import CrisisStage from './components/CrisisStage.vue';
-import HerTrack from './components/HerTrack.vue';
+import PlayerPanel from './components/PlayerPanel.vue';
 import RopeIndicator from './components/RopeIndicator.vue';
-import WorldTrack from './components/WorldTrack.vue';
+import TabNav from './components/TabNav.vue';
+import WorldPanel from './components/WorldPanel.vue';
 import { useDataStore } from './store';
 
 const store = useDataStore();
 
 const expanded = useLocalStorage('status_bar:expanded', false);
+const active_tab = useLocalStorage('status_bar:tab', 'chars');
+
+const TABS = [
+  { id: 'player', label: '玩家' },
+  { id: 'chars', label: '角色' },
+  { id: 'world', label: '世界' },
+];
 
 const stage_key = computed(
   () => ({ 征兆期: 'calm', 频发期: 'warning', 爆发期: 'accent' })[store.data.世界.危机阶段] ?? 'calm',
 );
+
+// 标题栏摘要：玩家姓名填入后显示玩家，否则回落到林敬亭的关系状态
+const headline = computed(() => {
+  const playerName = store.data.玩家.姓名;
+  if (playerName) return `${playerName} · ${store.data.世界.当前区域}`;
+  return store.data.林敬亭.关系状态;
+});
 </script>
 
 <style lang="scss" scoped>
@@ -129,18 +150,18 @@ const stage_key = computed(
 }
 
 .bar__body {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 14px;
-  padding: 12px;
   border-top: 1px solid var(--c-border);
-  animation: unfold 0.35s ease;
+}
+
+.bar__pane {
+  padding: 12px;
+  animation: unfold 0.3s ease;
 }
 
 @keyframes unfold {
   from {
     opacity: 0;
-    transform: translateY(-4px);
+    transform: translateY(-3px);
   }
 
   to {
@@ -149,14 +170,8 @@ const stage_key = computed(
   }
 }
 
-@media (max-width: 420px) {
-  .bar__body {
-    grid-template-columns: 1fr;
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
-  .bar__body {
+  .bar__pane {
     animation: none;
   }
 }
